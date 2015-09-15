@@ -3,3 +3,46 @@ minetest-australopithecus-player-model
 
 A minetest mod that provides a player model.
 
+
+License
+=======
+
+The code is licensed under 2 clause BSD, the artwork and models are licensed
+under Creative Commons 4.0 Attribution.
+
+Model history:
+
+ 1. MiceaKitsune, original model, licensed under WTFPL.
+ 2. stu, addition of elbows and knees, licensed under WTFPL.
+ 3. Robert Zenz, several fixes and changed, re-licensed under CC-BY 4.0.
+
+The set of changes include redone skinning, removal of duplicate surfaces and
+changes to the animations (mostly easing).
+
+
+Notes for changing the model
+============================
+
+If you want to export a x (DirectX) file from Blender, you'll need to set
+the following options in the lower left panel:
+
+ * [_] Export Selected Objects Only
+ * [X] Export Meshes
+ * [X] Export Normals
+ * [_] Flip Normals
+ * [X] Export UV Coordinates
+ * [X] Export Materials
+ * [X] Export Vertex Colors
+ * [X] Export Skin Weights
+ * [X] Apply Modifiers
+ * [X] Export Amature Bones
+ * [X] Export Rest Position
+ * [X] Export Animations
+ * [_] Include Frame Rate
+ * [_] Export Actions as AnimationSets
+ * [_] Attach Unused Actions to First Amature
+ * [_] Verbose
+
+There is a Solidify modifier set on the head, this is needed so that the hair
+or hat or cap is also visible from "the inside".
+
