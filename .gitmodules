@@ -1,0 +1,3 @@
+[submodule "deps/utils"]
+	path = deps/utils
+	url = https://github.com/RobertZenz/minetest-australopithecus-utils.git
