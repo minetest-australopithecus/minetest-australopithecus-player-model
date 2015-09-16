@@ -1,0 +1,433 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
+<li><a href="#Fields">Fields</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><strong>playermodel</strong></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>playermodel</code></h1>
+<p>PlayerModel is a system that adds a player model complete with animations.</p>
+<p></p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#activate">activate ()</a></td>
+	<td class="summary">Activates the system, if it is not disabled by the configuration.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#activate_model_on_player">activate_model_on_player (player)</a></td>
+	<td class="summary">Activates the model on the given player.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#determine_animation">determine_animation (player)</a></td>
+	<td class="summary">Determines the animation and frame speed for the current state of
+ the given player.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#perform_animation_updates">perform_animation_updates ()</a></td>
+	<td class="summary">Performs animation updates on all players.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#set_player_animation">set_player_animation (player, animation, frame_speed)</a></td>
+	<td class="summary">Sets the player information on the given player, but only if it has changed.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#update_player_animation">update_player_animation (player)</a></td>
+	<td class="summary">Updates the animation of the given player.</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#player_information">player_information</a></td>
+	<td class="summary">A cache so that animations are not needlessly set.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#texture">texture</a></td>
+	<td class="summary">The texture of the model that is used.</td>
+	</tr>
+</table>
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#animation_digging">animation_digging</a></td>
+	<td class="summary">The animation for when the player is digging.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#animation_laying">animation_laying</a></td>
+	<td class="summary">The animation for when the player is laying on the ground.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#animation_sitting">animation_sitting</a></td>
+	<td class="summary">The animation for when the player is sitting.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#animation_standing">animation_standing</a></td>
+	<td class="summary">The animation for when the player is standing still.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#animation_walking">animation_walking</a></td>
+	<td class="summary">The animation for when the player is walking.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#animation_walking_digging">animation_walking_digging</a></td>
+	<td class="summary">The animation for when the player is walking and digging.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#frame_speed">frame_speed</a></td>
+	<td class="summary">The frame speed of the animations, will be halved for sneaking.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#model">model</a></td>
+	<td class="summary">The name of the model that will be used.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#size">size</a></td>
+	<td class="summary">The size of the model.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Functions"></a>Functions</h2>
+    <dl class="function">
+    <dt>
+    <a name = "activate"></a>
+    <strong>activate ()</strong>
+    </dt>
+    <dd>
+    Activates the system, if it is not disabled by the configuration.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "activate_model_on_player"></a>
+    <strong>activate_model_on_player (player)</strong>
+    </dt>
+    <dd>
+    Activates the model on the given player.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">player</span>
+         The Player object on which to activate the model.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "determine_animation"></a>
+    <strong>determine_animation (player)</strong>
+    </dt>
+    <dd>
+    Determines the animation and frame speed for the current state of
+ the given player.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">player</span>
+         The Player Object.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The animation and the frame speed.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "perform_animation_updates"></a>
+    <strong>perform_animation_updates ()</strong>
+    </dt>
+    <dd>
+    Performs animation updates on all players.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "set_player_animation"></a>
+    <strong>set_player_animation (player, animation, frame_speed)</strong>
+    </dt>
+    <dd>
+    Sets the player information on the given player, but only if it has changed.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">player</span>
+         The Player object on which to set the animation.
+        </li>
+        <li><span class="parameter">animation</span>
+         The animation.
+        </li>
+        <li><span class="parameter">frame_speed</span>
+         The frame speed.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "update_player_animation"></a>
+    <strong>update_player_animation (player)</strong>
+    </dt>
+    <dd>
+    Updates the animation of the given player.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">player</span>
+         The Player object which to update.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Tables"></a>Tables</h2>
+    <dl class="function">
+    <dt>
+    <a name = "player_information"></a>
+    <strong>player_information</strong>
+    </dt>
+    <dd>
+    A cache so that animations are not needlessly set.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "texture"></a>
+    <strong>texture</strong>
+    </dt>
+    <dd>
+    The texture of the model that is used.
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">settings</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Fields"></a>Fields</h2>
+    <dl class="function">
+    <dt>
+    <a name = "animation_digging"></a>
+    <strong>animation_digging</strong>
+    </dt>
+    <dd>
+    The animation for when the player is digging.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "animation_laying"></a>
+    <strong>animation_laying</strong>
+    </dt>
+    <dd>
+    The animation for when the player is laying on the ground.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "animation_sitting"></a>
+    <strong>animation_sitting</strong>
+    </dt>
+    <dd>
+    The animation for when the player is sitting.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "animation_standing"></a>
+    <strong>animation_standing</strong>
+    </dt>
+    <dd>
+    The animation for when the player is standing still.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "animation_walking"></a>
+    <strong>animation_walking</strong>
+    </dt>
+    <dd>
+    The animation for when the player is walking.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "animation_walking_digging"></a>
+    <strong>animation_walking_digging</strong>
+    </dt>
+    <dd>
+    The animation for when the player is walking and digging.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "frame_speed"></a>
+    <strong>frame_speed</strong>
+    </dt>
+    <dd>
+    The frame speed of the animations, will be halved for sneaking.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "model"></a>
+    <strong>model</strong>
+    </dt>
+    <dd>
+    The name of the model that will be used.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "size"></a>
+    <strong>size</strong>
+    </dt>
+    <dd>
+    The size of the model.
+
+
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.2</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
