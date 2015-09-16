@@ -20,6 +20,38 @@ The set of changes include redone skinning, removal of duplicate surfaces and
 changes to the animations (mostly easing).
 
 
+Configuration
+=============
+
+The system can be configured by adding settings to the `minetest.conf`:
+
+    # If the system should be activated, defaults to true.
+    playermodel_activate = true
+    
+    # The name of the model to use, defaults to "character.x".
+    playermodel_model = "character.x"
+    
+    # The name of the texture to use.
+    playermodel_model_texture = "character.png"
+    
+    # The size of the model in two values, x and y, defaults to "1, 1".
+    playermodel_model_size = 1, 1
+    
+    # The base speed of the animations, defaults to 30. Will be halved
+    # for sneaking.
+    playermodel_frame_speed = 30
+    
+    # The parameters that follow are the start and end frame (both inclusive)
+    # of the animations.
+    
+    playermodel_animation_digging = 189, 199
+    playermodel_animation_laying = 162, 167
+    playermodel_animation_sitting = 81, 161
+    playermodel_animation_standing = 0, 80
+    playermodel_animation_walking = 168, 188
+    playermodel_animation_walking_digging = 200, 220
+
+
 Notes for changing the model
 ============================
 
