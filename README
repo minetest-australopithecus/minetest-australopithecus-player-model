@@ -29,7 +29,7 @@ The system can be configured by adding settings to the `minetest.conf`:
     playermodel_activate = true
     
     # The name of the model to use, defaults to "character.x".
-    playermodel_model = character.x
+    playermodel_model_model = character.x
     
     # The name of the texture to use.
     playermodel_model_texture = character.png
