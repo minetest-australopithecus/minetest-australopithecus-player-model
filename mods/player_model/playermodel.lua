@@ -79,17 +79,7 @@ end
 --
 -- @param player The Player object on which to activate the model.
 function playermodel.activate_model_on_player(player)
-	player:set_properties({
-		mesh = playermodel.model,
-		textures = playermodel.texture,
-		visual = "mesh",
-		visual_size = playermodel.size,
-	})
-	
-	playermodel.player_information[player:get_player_name()] = {
-		current_animation = nil,
-		current_frame_speed = nil
-	}
+	playermodel.set_player_model(player, playermodel.model, playermodel.texture, playermodel.size)
 end
 
 --- The default animation provider that is registered as first provider.
@@ -170,6 +160,14 @@ end
 function playermodel.set_player_animation(player, animation, frame_speed)
 	local info = playermodel.player_information[player:get_player_name()]
 	
+	if info == nil then
+		info = {
+			current_animation = nil,
+			current_frame_speed = nil
+		}
+		playermodel.player_information[player:get_player_name()] = info
+	end
+	
 	if info.animation ~= animation or info.frame_speed ~= frame_speed then
 		player:set_animation(
 			animation,
@@ -180,6 +178,32 @@ function playermodel.set_player_animation(player, animation, frame_speed)
 		info.animation = animation
 		info.frame_speed = frame_speed
 	end
+end
+
+--- Sets the given model, textures and size on the player.
+--
+-- @param player The Player object on which to set the model.
+-- @param model The name of the model/mesh to use. Can be nil to keep
+--              the current value.
+-- @param textures The textures to use. Can be nil to keep the current value.
+-- @param size The size of the mode, a table with x and y values. Can be nil
+--             to keep the current value.
+function playermodel.set_player_model(player, model, textures, size)
+	local properties = player:get_properties()
+	
+	properties.visual = "mesh"
+	
+	if model ~= nil then
+		properties.mesh = model
+	end
+	if textures ~= nil then
+		properties.textures = textures
+	end
+	if size ~= nil then
+		properties.visual_size = size
+	end
+	
+	player:set_properties(properties)
 end
 
 --- Updates the animation of the given player.
