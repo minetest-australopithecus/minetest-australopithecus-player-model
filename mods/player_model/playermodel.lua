@@ -27,40 +27,43 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 --- PlayerModel is a system that adds a player model complete with animations.
 playermodel = {
-	--- The animation for when the player is digging.
+	--- The animation for when the player is digging. Defaults to 189/199.
 	animation_digging = settings.get_pos2d("playermodel_animation_digging", { x = 189, y = 199 }),
 	
-	--- The animation for when the player is laying on the ground.
+	--- The animation for when the player is laying on the ground. Defaults
+	-- to 162/167.
 	animation_laying = settings.get_pos2d("playermodel_animation_laying", { x = 162, y = 167 }),
 	
 	--- The providers for the animations.
 	animation_providers = List:new(),
 	
-	--- The animation for when the player is sitting.
+	--- The animation for when the player is sitting. Defaults to 81/161.
 	animation_sitting = settings.get_pos2d("playermodel_animation_sitting", { x = 81, y = 161 }),
 	
-	--- The animation for when the player is standing still.
+	--- The animation for when the player is standing still. Defaults to 0/80.
 	animation_standing = settings.get_pos2d("playermodel_animation_standing", { x = 0, y = 80 }),
 	
-	--- The animation for when the player is walking.
+	--- The animation for when the player is walking. Defaults to 168/188.
 	animation_walking = settings.get_pos2d("playermodel_animation_walking", { x = 168, y = 188 }),
 	
-	--- The animation for when the player is walking and digging.
+	--- The animation for when the player is walking and digging. Defaults
+	-- to 200/220.
 	animation_walking_digging = settings.get_pos2d("playermodel_animation_walking_digging", { x = 200, y = 220 }),
 	
-	--- The frame speed of the animations, will be halved for sneaking.
+	--- The frame speed of the animations, will be halved for sneaking. Defaults
+	-- to 30.
 	frame_speed = settings.get_number("playermodel_frame_speed", 30),
 	
-	--- The name of the model that will be used.
+	--- The name of the model that will be used. Defaults to "character.x".
 	model = settings.get_string("playermodel_model_name", "character.x"),
 	
 	--- A cache so that animations are not needlessly set.
 	player_information = {},
 	
-	--- The texture of the model that is used.
+	--- The texture of the model that is used. Defaults to "character.png".
 	texture = { settings.get_string("playermodel_model_texture", "character.png") },
 	
-	--- The size of the model.
+	--- The size of the model. Defaults to 1/1.
 	size = settings.get_pos2d("playermodel_model_size", { x = 1, y = 1 })
 }
 
