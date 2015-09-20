@@ -71,6 +71,63 @@ change the animation.
                     -- change it.
 
 
+Usage example: Simple
+=====================
+
+The most simple usecase is to simply use the mod without any modifications.
+
+
+Usage example: Animation providers
+==================================
+
+One can register a provider for animation, like this:
+
+    -- Create the animation only once, to make sure that the playermodel cache
+    -- can work correctly. Consisting of the start and end frame, inclusive.
+    local drowning_animation = {
+        x = 266,
+        y = 328
+    }
+    
+    -- Now we register the callback.
+    playermodel.register_animation_provider(function(player)
+        if player:get_breath() <= 0 then
+            -- Return the animation and a frame speed of 30,
+            -- so that sneak does not change the frame speed.
+            return drowning_animation, 30
+        end
+    end)
+
+
+Usage example: Custom usage
+===========================
+
+There is also the possibility to only use the player-model mod as utility mod,
+without any default functionality. Deactivate the default activation by placing
+this in the configuration:
+
+    playermodel_activate = false
+
+After this, you can use the following functions directly without the system
+intervening with your affords:
+
+    playermodel.set_player_model(player, model, texture, size)
+    playermodel.set_player_animation(player, animation, frame_speed)
+
+There is still the cache active to make sure that animations are not needlessly
+set on the player object. Here is a complete example:
+
+    minetest.register_on_joinplayer(function(player)
+        playermodel.set_player_model(player, your_model, your_texture, your_size)
+    end)
+    
+    minetest.register_on_globalstep(function(time)
+        for index, player in ipairs(minetest.get_connected_players()) do
+            playermodel.set_player_animation(your_animation)
+        end
+    end)
+
+
 Notes for changing the model
 ============================
 
