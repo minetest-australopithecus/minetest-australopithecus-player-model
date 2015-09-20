@@ -3,7 +3,7 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <head>
-    <title>Reference</title>
+    <title>player-model</title>
     <link rel="stylesheet" href="ldoc.css" type="text/css" />
 </head>
 <body>
@@ -24,7 +24,7 @@
 
 <div id="navigation">
 <br/>
-<h1>ldoc</h1>
+<h1>player-model</h1>
 
 
 <h2>Contents</h2>
@@ -60,6 +60,10 @@
 	<td class="summary">Activates the model on the given player.</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#default_animation_provider">default_animation_provider (player)</a></td>
+	<td class="summary">The default animation provider that is registered as first provider.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#determine_animation">determine_animation (player)</a></td>
 	<td class="summary">Determines the animation and frame speed for the current state of
  the given player.</td>
@@ -69,8 +73,16 @@
 	<td class="summary">Performs animation updates on all players.</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#register_animation_provider">register_animation_provider (provider)</a></td>
+	<td class="summary">Registers a provider for player animations.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#set_player_animation">set_player_animation (player, animation, frame_speed)</a></td>
 	<td class="summary">Sets the player information on the given player, but only if it has changed.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#set_player_model">set_player_model (player, model, textures, size)</a></td>
+	<td class="summary">Sets the given model, textures and size on the player.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#update_player_animation">update_player_animation (player)</a></td>
@@ -97,6 +109,10 @@
 	<tr>
 	<td class="name" nowrap><a href="#animation_laying">animation_laying</a></td>
 	<td class="summary">The animation for when the player is laying on the ground.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#animation_providers">animation_providers</a></td>
+	<td class="summary">The providers for the animations.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#animation_sitting">animation_sitting</a></td>
@@ -169,12 +185,38 @@
 
 </dd>
     <dt>
+    <a name = "default_animation_provider"></a>
+    <strong>default_animation_provider (player)</strong>
+    </dt>
+    <dd>
+    The default animation provider that is registered as first provider.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">player</span>
+         The Player object for which to get the animation.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The animation and the frame speed.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
     <a name = "determine_animation"></a>
     <strong>determine_animation (player)</strong>
     </dt>
     <dd>
     Determines the animation and frame speed for the current state of
- the given player.
+ the given player.  Invokes all registered providers.
+
 
 
     <h3>Parameters:</h3>
@@ -209,6 +251,30 @@
 
 </dd>
     <dt>
+    <a name = "register_animation_provider"></a>
+    <strong>register_animation_provider (provider)</strong>
+    </dt>
+    <dd>
+    Registers a provider for player animations.
+<p> Animation providers are invoked on every global step of Minetest by default,
+ that means it should be as lightweight as possible.
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">provider</span>
+         The provider. A function that accepts a Player object and
+                 returns the animation that should be used, or nil.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
     <a name = "set_player_animation"></a>
     <strong>set_player_animation (player, animation, frame_speed)</strong>
     </dt>
@@ -226,6 +292,37 @@
         </li>
         <li><span class="parameter">frame_speed</span>
          The frame speed.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "set_player_model"></a>
+    <strong>set_player_model (player, model, textures, size)</strong>
+    </dt>
+    <dd>
+    Sets the given model, textures and size on the player.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">player</span>
+         The Player object on which to set the model.
+        </li>
+        <li><span class="parameter">model</span>
+         The name of the model/mesh to use. Can be nil to keep
+              the current value.
+        </li>
+        <li><span class="parameter">textures</span>
+         The textures to use. Can be nil to keep the current value.
+        </li>
+        <li><span class="parameter">size</span>
+         The size of the mode, a table with x and y values. Can be nil
+             to keep the current value.
         </li>
     </ul>
 
@@ -314,6 +411,20 @@
     </dt>
     <dd>
     The animation for when the player is laying on the ground.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "animation_providers"></a>
+    <strong>animation_providers</strong>
+    </dt>
+    <dd>
+    The providers for the animations.
 
 
 
