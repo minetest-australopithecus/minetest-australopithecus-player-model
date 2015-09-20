@@ -33,6 +33,9 @@ playermodel = {
 	--- The animation for when the player is laying on the ground.
 	animation_laying = settings.get_pos2d("playermodel_animation_laying", { x = 162, y = 167 }),
 	
+	--- The providers for the animations.
+	animation_providers = List:new(),
+	
 	--- The animation for when the player is sitting.
 	animation_sitting = settings.get_pos2d("playermodel_animation_sitting", { x = 81, y = 161 }),
 	
@@ -65,6 +68,8 @@ playermodel = {
 --- Activates the system, if it is not disabled by the configuration.
 function playermodel.activate()
 	if settings.get_bool("playermodel_activate", true) then
+		playermodel.animation_providers:add(playermodel.default_animation_provider)
+		
 		minetest.register_globalstep(playermodel.perform_animation_updates)
 		minetest.register_on_joinplayer(playermodel.activate_model_on_player)
 	end
@@ -87,15 +92,12 @@ function playermodel.activate_model_on_player(player)
 	}
 end
 
---- Determines the animation and frame speed for the current state of
--- the given player.
+--- The default animation provider that is registered as first provider.
 --
--- @param player The Player Object.
+-- @param player The Player object for which to get the animation.
 -- @return The animation and the frame speed.
-function playermodel.determine_animation(player)
+function playermodel.default_animation_provider(player)
 	local controls = player:get_player_control()
-	
-	local animation = nil
 	
 	if player:get_hp() == 0 then
 		animation = playermodel.animation_laying
@@ -120,11 +122,44 @@ function playermodel.determine_animation(player)
 	return animation, frame_speed
 end
 
+--- Determines the animation and frame speed for the current state of
+-- the given player. Invokes all registered providers.
+--
+-- @param player The Player Object.
+-- @return The animation and the frame speed.
+function playermodel.determine_animation(player)
+	local animation = nil
+	
+	playermodel.animation_providers:foreach(function(provider, index)
+		local provided_animation, provided_frame_peed = provider(player)
+		
+		if provided_animation ~= nil then
+			animation = provided_animation
+		end
+		if provided_frame_speed ~= nil then
+			frame_speed = provided_frame_speed
+		end
+	end)
+	
+	return animation, frame_speed
+end
+
 --- Performs animation updates on all players.
 function playermodel.perform_animation_updates()
 	for index, player in ipairs(minetest.get_connected_players()) do
 		playermodel.update_player_animation(player)
 	end
+end
+
+--- Registers a provider for player animations.
+--
+-- Animation providers are invoked on every global step of Minetest by default,
+-- that means it should be as lightweight as possible.
+--
+-- @param provider The provider. A function that accepts a Player object and
+--                 returns the animation that should be used, or nil.
+function playermodel:register_animation_provider(provider)
+	playermodel.animation_providers:add(provider)
 end
 
 --- Sets the player information on the given player, but only if it has changed.
