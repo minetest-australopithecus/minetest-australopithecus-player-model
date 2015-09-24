@@ -92,6 +92,8 @@ end
 function playermodel.default_animation_provider(player)
 	local controls = player:get_player_control()
 	
+	local animation = nil
+	
 	if player:get_hp() == 0 then
 		animation = playermodel.animation_laying
 	elseif controls.up or controls.down or controls.left or controls.right then
@@ -121,10 +123,10 @@ end
 -- @param player The Player Object.
 -- @return The animation and the frame speed.
 function playermodel.determine_animation(player)
-	local animation = nil
+	local animation, frame_speed = nil
 	
 	playermodel.animation_providers:foreach(function(provider, index)
-		local provided_animation, provided_frame_peed = provider(player)
+		local provided_animation, provided_frame_speed = provider(player)
 		
 		if provided_animation ~= nil then
 			animation = provided_animation
