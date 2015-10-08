@@ -37,9 +37,12 @@ The system can be configured by adding settings to the `minetest.conf`:
     # The size of the model in two values, x and y, defaults to "1, 1".
     playermodel_model_size = 1, 1
     
-    # The base speed of the animations, defaults to 30. Will be halved
-    # for sneaking.
+    # The base speed of the animations, defaults to 30.
     playermodel_frame_speed = 30
+    
+    # The base speed of the animations when the player is sneaking, defaults
+    # to 15.
+    playermodel_frame_speed_sneaking = 15
     
     # The parameters that follow are the start and end frame (both inclusive)
     # of the animations.

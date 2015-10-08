@@ -50,9 +50,12 @@ playermodel = {
 	-- to 200/220.
 	animation_walking_digging = settings.get_pos2d("playermodel_animation_walking_digging", { x = 200, y = 220 }),
 	
-	--- The frame speed of the animations, will be halved for sneaking. Defaults
-	-- to 30.
+	--- The frame speed of the animations. Defaults to 30.
 	frame_speed = settings.get_number("playermodel_frame_speed", 30),
+	
+	--- The frame speed of the animations when the player is sneaking.
+	-- Defaults to 15.
+	frame_speed_sneaking = settings.get_number("playermodel_frame_speed_sneaking", 15),
 	
 	--- The name of the model that will be used. Defaults to "character.x".
 	model = settings.get_string("playermodel_model_name", "character.x"),
@@ -111,7 +114,7 @@ function playermodel.default_animation_provider(player)
 	local frame_speed = playermodel.frame_speed
 	
 	if controls.sneak then
-		frame_speed = frame_speed / 2
+		frame_speed = playermodel.frame_speed_sneaking
 	end
 	
 	return animation, frame_speed
