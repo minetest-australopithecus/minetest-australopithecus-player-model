@@ -45,7 +45,8 @@ The system can be configured by adding settings to the `minetest.conf`:
     playermodel_frame_speed_sneaking = 15
     
     # The parameters that follow are the start and end frame (both inclusive)
-    # of the animations.
+    # of the animation, and optionally the frame speed for normal and sneaking.
+    # Like this: playermodel_animation_laying = 5, 89, 30, 15
     
     playermodel_animation_digging = 189, 199
     playermodel_animation_laying = 162, 167

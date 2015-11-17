@@ -28,27 +28,27 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --- PlayerModel is a system that adds a player model complete with animations.
 playermodel = {
 	--- The animation for when the player is digging. Defaults to 189/199.
-	animation_digging = settings.get_pos2d("playermodel_animation_digging", { x = 189, y = 199 }),
+	animation_digging = nil,
 	
 	--- The animation for when the player is laying on the ground. Defaults
 	-- to 162/167.
-	animation_laying = settings.get_pos2d("playermodel_animation_laying", { x = 162, y = 167 }),
+	animation_laying = nil,
 	
 	--- The providers for the animations.
 	animation_providers = List:new(),
 	
 	--- The animation for when the player is sitting. Defaults to 81/161.
-	animation_sitting = settings.get_pos2d("playermodel_animation_sitting", { x = 81, y = 161 }),
+	animation_sitting = nil,
 	
 	--- The animation for when the player is standing still. Defaults to 0/80.
-	animation_standing = settings.get_pos2d("playermodel_animation_standing", { x = 0, y = 80 }),
+	animation_standing = nil,
 	
 	--- The animation for when the player is walking. Defaults to 168/188.
-	animation_walking = settings.get_pos2d("playermodel_animation_walking", { x = 168, y = 188 }),
+	animation_walking = nil,
 	
 	--- The animation for when the player is walking and digging. Defaults
 	-- to 200/220.
-	animation_walking_digging = settings.get_pos2d("playermodel_animation_walking_digging", { x = 200, y = 220 }),
+	animation_walking_digging = nil,
 	
 	--- The frame speed of the animations. Defaults to 30.
 	frame_speed = settings.get_number("playermodel_frame_speed", 30),
@@ -111,10 +111,18 @@ function playermodel.default_animation_provider(player)
 		animation = playermodel.animation_standing
 	end
 	
-	local frame_speed = playermodel.frame_speed
+	local frame_speed = animation.speed
+	
+	if frame_speed == nil then
+		frame_speed = playermodel.frame_speed
+	end
 	
 	if controls.sneak then
-		frame_speed = playermodel.frame_speed_sneaking
+		frame_speed = animation.sneak_speed
+		
+		if frame_speed == nil then
+			frame_speed = playermodel.frame_speed_sneaking
+		end
 	end
 	
 	return animation, frame_speed
@@ -140,6 +148,29 @@ function playermodel.determine_animation(player)
 	end)
 	
 	return animation, frame_speed
+end
+
+--- Gets the specified animation from the configuration.
+--
+-- @param name The name of the animation.
+-- @param default_x The default value for x.
+-- @param default_y The default value for y.
+-- @return The table of the animation, with x, y and speed values.
+function playermodel.get_animation(name, default_x, default_y)
+	return settings.get_table(
+		"playermodel_animation_" .. name,
+		{ x = default_x, y = default_y },
+		"x", "y", "speed", "sneak_speed")
+end
+
+--- Initializes all necessary variables.
+function playermodel.init()
+	playermodel.animation_digging = playermodel.get_animation("digging", 189, 199)
+	playermodel.animation_laying = playermodel.get_animation("laying", 162, 167)
+	playermodel.animation_sitting = playermodel.get_animation("sitting", 81, 161)
+	playermodel.animation_standing = playermodel.get_animation("standing", 0, 80)
+	playermodel.animation_walking = playermodel.get_animation("walking", 168, 188)
+	playermodel.animation_walking_digging = playermodel.get_animation("walking_digging", 200, 220)
 end
 
 --- Performs animation updates on all players.

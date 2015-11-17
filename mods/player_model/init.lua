@@ -31,5 +31,6 @@ local base_path = minetest.get_modpath(minetest.get_current_modname())
 dofile(base_path .. "/playermodel.lua")
 
 
+playermodel.init()
 playermodel.activate()
 
