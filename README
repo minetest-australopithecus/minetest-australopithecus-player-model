@@ -5,7 +5,7 @@ A minetest mod that provides a player model.
 
 
 License
-=======
+-------
 
 The code is licensed under 2 clause BSD, the artwork and models are licensed
 under Creative Commons 4.0 Attribution.
@@ -21,7 +21,7 @@ changes to the animations (mostly easing).
 
 
 Configuration
-=============
+-------------
 
 The system can be configured by adding settings to the `minetest.conf`:
 
@@ -57,7 +57,7 @@ The system can be configured by adding settings to the `minetest.conf`:
 
 
 Animation providers
-===================
+-------------------
 
 You can register providers that provide an animation and a frame speed instead
 of the default implementation. It is a simple callback that accepts the Player
@@ -76,13 +76,13 @@ change the animation.
 
 
 Usage example: Simple
-=====================
+---------------------
 
 The most simple usecase is to simply use the mod without any modifications.
 
 
 Usage example: Animation providers
-==================================
+----------------------------------
 
 One can register a provider for animation, like this:
 
@@ -104,7 +104,7 @@ One can register a provider for animation, like this:
 
 
 Usage example: Custom usage
-===========================
+---------------------------
 
 There is also the possibility to only use the player-model mod as utility mod,
 without any default functionality. Deactivate the default activation by placing
@@ -133,7 +133,7 @@ set on the player object. Here is a complete example:
 
 
 Notes for changing the model
-============================
+----------------------------
 
 If you want to export a x (DirectX) file from Blender, you'll need to set
 the following options in the lower left panel:
