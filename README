@@ -4,6 +4,18 @@ minetest-australopithecus-player-model
 A minetest mod that provides a player model.
 
 
+Features
+--------
+
+ * A model with elbows and knees.
+ * Animations are toned down.
+ * By default comes with the animations: digging, laying, sitting, standing,
+   walking, walking/digging.
+ * An API allows to easily extend the mod with further, specific animations and
+   also change settings of the players (like the texture used).
+ * Completely configurable from the configuration.
+
+
 License
 -------
 
