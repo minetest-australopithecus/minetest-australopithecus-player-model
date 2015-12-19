@@ -28,7 +28,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --- PlayerModel is a system that adds a player model complete with animations.
 playermodel = {
 	--- If the system should be automatically activated.
-	activate = settings.get_bool("playermodel_activate", true),
+	activate_automatically = settings.get_bool("playermodel_activate", true),
 	
 	--- If the system is active/has been activated.
 	active = false,
@@ -79,7 +79,7 @@ playermodel = {
 
 --- Activates the system, if it is not disabled by the configuration.
 function playermodel.activate()
-	if playermodel.activate then
+	if playermodel.activate_automatically then
 		playermodel.activate_internal()
 	end
 end
