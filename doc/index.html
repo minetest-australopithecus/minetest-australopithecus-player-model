@@ -56,6 +56,10 @@
 	<td class="summary">Activates the system, if it is not disabled by the configuration.</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#activate_internal">activate_internal ()</a></td>
+	<td class="summary">Activates the system, without checking the configuration.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#activate_model_on_player">activate_model_on_player (player)</a></td>
 	<td class="summary">Activates the model on the given player.</td>
 	</tr>
@@ -67,6 +71,14 @@
 	<td class="name" nowrap><a href="#determine_animation">determine_animation (player)</a></td>
 	<td class="summary">Determines the animation and frame speed for the current state of
  the given player.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#get_animation">get_animation (name, default_x, default_y)</a></td>
+	<td class="summary">Gets the specified animation from the configuration.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#init">init ()</a></td>
+	<td class="summary">Initializes all necessary variables.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#perform_animation_updates">perform_animation_updates ()</a></td>
@@ -103,6 +115,14 @@
 <h2><a href="#Fields">Fields</a></h2>
 <table class="function_list">
 	<tr>
+	<td class="name" nowrap><a href="#activate">activate</a></td>
+	<td class="summary">If the system should be automatically activated.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#active">active</a></td>
+	<td class="summary">If the system is active/has been activated.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#animation_digging">animation_digging</a></td>
 	<td class="summary">The animation for when the player is digging.</td>
 	</tr>
@@ -132,7 +152,11 @@
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#frame_speed">frame_speed</a></td>
-	<td class="summary">The frame speed of the animations, will be halved for sneaking.</td>
+	<td class="summary">The frame speed of the animations.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#frame_speed_sneaking">frame_speed_sneaking</a></td>
+	<td class="summary">The frame speed of the animations when the player is sneaking.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#model">model</a></td>
@@ -156,6 +180,20 @@
     </dt>
     <dd>
     Activates the system, if it is not disabled by the configuration.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "activate_internal"></a>
+    <strong>activate_internal ()</strong>
+    </dt>
+    <dd>
+    Activates the system, without checking the configuration.
 
 
 
@@ -231,6 +269,51 @@
 
         The animation and the frame speed.
     </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "get_animation"></a>
+    <strong>get_animation (name, default_x, default_y)</strong>
+    </dt>
+    <dd>
+    Gets the specified animation from the configuration.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+         The name of the animation.
+        </li>
+        <li><span class="parameter">default_x</span>
+         The default value for x.
+        </li>
+        <li><span class="parameter">default_y</span>
+         The default value for y.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The table of the animation, with x, y and speed values.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "init"></a>
+    <strong>init ()</strong>
+    </dt>
+    <dd>
+    Initializes all necessary variables.
+
+
+
 
 
 
@@ -392,6 +475,34 @@
     <h2><a name="Fields"></a>Fields</h2>
     <dl class="function">
     <dt>
+    <a name = "activate"></a>
+    <strong>activate</strong>
+    </dt>
+    <dd>
+    If the system should be automatically activated.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "active"></a>
+    <strong>active</strong>
+    </dt>
+    <dd>
+    If the system is active/has been activated.
+
+
+
+
+
+
+
+</dd>
+    <dt>
     <a name = "animation_digging"></a>
     <strong>animation_digging</strong>
     </dt>
@@ -496,8 +607,22 @@
     <strong>frame_speed</strong>
     </dt>
     <dd>
-    The frame speed of the animations, will be halved for sneaking.  Defaults
- to 30.
+    The frame speed of the animations.  Defaults to 30.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "frame_speed_sneaking"></a>
+    <strong>frame_speed_sneaking</strong>
+    </dt>
+    <dd>
+    The frame speed of the animations when the player is sneaking.
+ Defaults to 15.
 
 
 

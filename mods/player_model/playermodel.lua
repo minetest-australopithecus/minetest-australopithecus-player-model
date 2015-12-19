@@ -27,6 +27,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 --- PlayerModel is a system that adds a player model complete with animations.
 playermodel = {
+	--- If the system should be automatically activated.
+	activate = settings.get_bool("playermodel_activate", true),
+	
+	--- If the system is active/has been activated.
+	active = false,
+	
 	--- The animation for when the player is digging. Defaults to 189/199.
 	animation_digging = nil,
 	
@@ -73,11 +79,20 @@ playermodel = {
 
 --- Activates the system, if it is not disabled by the configuration.
 function playermodel.activate()
-	if settings.get_bool("playermodel_activate", true) then
+	if playermodel.activate then
+		playermodel.activate_internal()
+	end
+end
+
+--- Activates the system, without checking the configuration.
+function playermodel.activate_internal()
+	if not playermodel.active then
 		playermodel.animation_providers:add(playermodel.default_animation_provider)
 		
 		minetest.register_globalstep(playermodel.perform_animation_updates)
 		minetest.register_on_joinplayer(playermodel.activate_model_on_player)
+		
+		playermodel.active = true
 	end
 end
 
