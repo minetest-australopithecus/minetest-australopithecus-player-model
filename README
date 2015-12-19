@@ -144,6 +144,13 @@ set on the player object. Here is a complete example:
     end)
 
 
+Force activation
+----------------
+
+You can force the activation of the system, even if it has been disabled in
+in the configuration, by invoking `playermodel.activate_internal`.
+
+
 Notes for changing the model
 ----------------------------
 
