@@ -56,6 +56,10 @@ The system can be configured by adding settings to the `minetest.conf`:
     # to 15.
     playermodel_frame_speed_sneaking = 15
     
+    # The interval in which the animation is updated, in seconds, defaults
+    # to 0.066 seconds.
+    playermodel_interval = 0.066
+    
     # The parameters that follow are the start and end frame (both inclusive)
     # of the animation, and optionally the frame speed for normal and sneaking.
     # Like this: playermodel_animation_laying = 5, 89, 30, 15

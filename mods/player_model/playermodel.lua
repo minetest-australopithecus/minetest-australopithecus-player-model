@@ -63,6 +63,9 @@ playermodel = {
 	-- Defaults to 15.
 	frame_speed_sneaking = settings.get_number("playermodel_frame_speed_sneaking", 15),
 	
+	--- The interval in which the animation is updated. Defaults to 0.066.
+	interval = settings.get_number("playermodel_interval", 0.066),
+	
 	--- The name of the model that will be used. Defaults to "character.x".
 	model = settings.get_string("playermodel_model_name", "character.x"),
 	
@@ -89,7 +92,12 @@ function playermodel.activate_internal()
 	if not playermodel.active then
 		playermodel.animation_providers:add(playermodel.default_animation_provider)
 		
-		minetest.register_globalstep(playermodel.perform_animation_updates)
+		scheduler.schedule(
+			"playermodel",
+			playermodel.interval,
+			playermodel.perform_animation_updates,
+			scheduler.OVERSHOOT_POLICY_RUN_ONCE)
+		
 		minetest.register_on_joinplayer(playermodel.activate_model_on_player)
 		
 		playermodel.active = true
